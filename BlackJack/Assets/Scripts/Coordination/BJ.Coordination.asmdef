@@ -1,0 +1,17 @@
+{
+    "name": "BJ.Coordination",
+    "rootNamespace": "BJ.Coordination",
+    "references": [
+        "GUID:b49baaa05add45d192ec2223e1c73ffa",
+        "GUID:c3a9b5919c7242f4bb2dd9eab3245189"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

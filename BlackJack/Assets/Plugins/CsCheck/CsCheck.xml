@@ -1,0 +1,1811 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CsCheck</name>
+    </assembly>
+    <members>
+        <member name="T:CsCheck.Causal">
+            <summary>Causal profiling functionality.</summary>
+        </member>
+        <member name="M:CsCheck.Causal.RegionStart(System.String)">
+            <summary>Marks the start of causal profiling region.</summary>
+            <param name="name">The region name.</param>
+        </member>
+        <member name="M:CsCheck.Causal.RegionEnd(CsCheck.Causal.Region)">
+            <summary>Marks the end of causal profiling region.</summary>
+            <param name="region">The region returned from RegionStart.</param>
+        </member>
+        <member name="M:CsCheck.Causal.Profile(System.Action,System.Int64,System.Int32)">
+            <summary>Run causal profiling on a the code in action for a number of iterations or time.</summary>
+            <param name="action">The code to be causal profiled.</param>
+            <param name="iter">The number of iteration to collect statistics.</param>
+            <param name="time">The number of seconds to collect statistics.</param>
+        </member>
+        <member name="M:CsCheck.Causal.Profile``1(CsCheck.Gen{``0},System.Action{``0},System.Int64,System.Int32)">
+            <summary>Run causal profiling on a the code in action using gen input data for a number of iterations or time.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="action">The code to be causal profiled.</param>
+            <param name="iter">The number of iteration to collect statistics.</param>
+            <param name="time">The number of seconds to collect statistics.</param>
+        </member>
+        <member name="T:CsCheck.Check">
+            <summary>Main random testing Check functions.</summary>
+        </member>
+        <member name="F:CsCheck.Check.Iter">
+            <summary>The number of iterations to run in the sample (default 100).</summary>
+        </member>
+        <member name="F:CsCheck.Check.Time">
+            <summary>The number of seconds to run the sample.</summary>
+        </member>
+        <member name="F:CsCheck.Check.Replay">
+            <summary>The number of times to retry the seed to reproduce a SampleConcurrent fail (default 100).</summary>
+        </member>
+        <member name="F:CsCheck.Check.Threads">
+            <summary>The number of threads to run the sample on (default number logical CPUs).</summary>
+        </member>
+        <member name="F:CsCheck.Check.Seed">
+            <summary>The initial seed to use for the first iteration.</summary>
+        </member>
+        <member name="F:CsCheck.Check.Sigma">
+            <summary>The sigma to use for Faster (default 6).</summary>
+        </member>
+        <member name="F:CsCheck.Check.Timeout">
+            <summary>The timeout in seconds to use for Faster (default 60 seconds).</summary>
+        </member>
+        <member name="M:CsCheck.Check.Sample``1(CsCheck.Gen{``0},System.Action{``0},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Action{``0,``1},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Action{``0,``1,``2},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Action{``0,``1,``2,``3},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Action{``0,``1,``2,``3,``4},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Action{``0,``1,``2,``3,``4,``5},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Action{``0,``1,``2,``3,``4,``5,``6},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``1(CsCheck.Gen{``0},System.Func{``0,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.String},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data retuning a classification and raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String})">
+            <summary>Sample the gen calling the assert each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task{System.String}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String},System.Action{System.String})">
+            <summary>Sample the gen calling the classify each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="classify">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+            <param name="writeLine">WriteLine function to use for the classify summary output.</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``1(CsCheck.Gen{``0},System.Func{``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Sample``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleAsync``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}},System.String})">
+            <summary>Sample the gen calling the predicate each time across multiple threads. Shrink any exceptions if necessary.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleOne``1(CsCheck.Gen{``0},System.Action{``0},System.String,System.Func{``0,System.String})">
+            <summary>Sample the gen once calling the assert.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleOneAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task},System.String,System.Func{``0,System.String})">
+            <summary>Sample the gen once calling the assert.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="assert">The code to call with the input data raising an exception if it fails.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleOne``1(CsCheck.Gen{``0},System.Func{``0,System.Boolean},System.String,System.Func{``0,System.String})">
+            <summary>Sample the gen once calling the predicate.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleOneAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task{System.Boolean}},System.String,System.Func{``0,System.String})">
+            <summary>Sample the gen once calling the predicate.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="predicate">The code to call with the input data returning if it is successful.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1}[],System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operations">The operation generators that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation">The operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state.</param>
+            <param name="operation2">An operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state.</param>
+            <param name="operation2">An operation generator that can act on the state.</param>
+            <param name="operation3">An operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state.</param>
+            <param name="operation2">An operation generator that can act on the state.</param>
+            <param name="operation3">An operation generator that can act on the state.</param>
+            <param name="operation4">An operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state.</param>
+            <param name="operation2">An operation generator that can act on the state.</param>
+            <param name="operation3">An operation generator that can act on the state.</param>
+            <param name="operation4">An operation generator that can act on the state.</param>
+            <param name="operation5">An operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleModelBased``2(CsCheck.Gen{System.ValueTuple{``0,``1}},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},CsCheck.GenOperation{``0,``1},System.Func{``0,``1,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Func{``1,System.String})">
+            <summary>Sample model-based operations on a random initial state checking that actual and model are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state.</param>
+            <param name="operation2">An operation generator that can act on the state.</param>
+            <param name="operation3">An operation generator that can act on the state.</param>
+            <param name="operation4">An operation generator that can act on the state.</param>
+            <param name="operation5">An operation generator that can act on the state.</param>
+            <param name="operation6">An operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="printActual">A function to convert the actual state to a string for error reporting (default Check.Print).</param>
+            <param name="printModel">A function to convert the model state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleMetamorphic``1(CsCheck.Gen{``0},CsCheck.GenMetamorphic{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String})">
+            <summary>Sample metamorphic (two path) operations on a random initial state checking that both paths are equal.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operations">A metamorphic operation generator that can act on the state.</param>
+            <param name="equal">A function to check if the actual and model are the same (default Check.ModelEqual).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0}[],System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operations">The operation generators that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state concurrently.</param>
+            <param name="operation2">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state concurrently.</param>
+            <param name="operation2">An operation generator that can act on the state concurrently.</param>
+            <param name="operation3">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state concurrently.</param>
+            <param name="operation2">An operation generator that can act on the state concurrently.</param>
+            <param name="operation3">An operation generator that can act on the state concurrently.</param>
+            <param name="operation4">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state concurrently.</param>
+            <param name="operation2">An operation generator that can act on the state concurrently.</param>
+            <param name="operation3">An operation generator that can act on the state concurrently.</param>
+            <param name="operation4">An operation generator that can act on the state concurrently.</param>
+            <param name="operation5">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.SampleConcurrent``1(CsCheck.Gen{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},CsCheck.GenOperation{``0},System.Func{``0,``0,System.Boolean},System.String,System.Int64,System.Int32,System.Int32,System.Func{``0,System.String},System.Int32)">
+            <summary>Sample model-based operations on a random initial state concurrently.
+            The result is compared against the result of the possible sequential permutations.
+            At least one of these permutations result must be equal for the concurrency to have been linearized successfully.
+            If not the failing initial state and sequence will be shrunk down to the shortest and simplest.</summary>
+            <param name="initial">The initial state generator.</param>
+            <param name="operation1">An operation generator that can act on the state concurrently.</param>
+            <param name="operation2">An operation generator that can act on the state concurrently.</param>
+            <param name="operation3">An operation generator that can act on the state concurrently.</param>
+            <param name="operation4">An operation generator that can act on the state concurrently.</param>
+            <param name="operation5">An operation generator that can act on the state concurrently.</param>
+            <param name="operation6">An operation generator that can act on the state concurrently.</param>
+            <param name="equal">A function to check if the two states are the same (default Check.Equal).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the state to a string for error reporting (default Check.Print).</param>
+            <param name="replay">The number of times to retry the seed to reproduce an initial fail (default 100).</param>
+        </member>
+        <member name="M:CsCheck.Check.ChiSquared(System.Int32[],System.Int32[])">
+            <summary>Assert actual is in line with expected using a chi-squared test to 6 sigma.</summary>
+            <param name="expected">The expected bin counts.</param>
+            <param name="actual">The actual bin counts.</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster(System.Action,System.Action,System.Double,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma.</summary>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60). </param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``1(System.Func{``0},System.Func{``0},System.Action{``0,``0},System.Double,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma.</summary>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60). </param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync(System.Func{System.Threading.Tasks.Task},System.Func{System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma.</summary>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60). </param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.Threading.Tasks.Task{``0}},System.Action{``0,``0},System.Double,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma.</summary>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60). </param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``1(CsCheck.Gen{``0},System.Action{``0},System.Action{``0},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Action{``0,``1},System.Action{``0,``1},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Action{``0,``1,``2},System.Action{``0,``1,``2},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Action{``0,``1,``2,``3},System.Action{``0,``1,``2,``3},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Action{``0,``1,``2,``3,``4},System.Action{``0,``1,``2,``3,``4},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Action{``0,``1,``2,``3,``4,``5},System.Action{``0,``1,``2,``3,``4,``5},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Action{``0,``1,``2,``3,``4,``5,``6},System.Action{``0,``1,``2,``3,``4,``5,``6},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``1(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{``0,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Threading.Tasks.Task},System.Func{``0,``1,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Threading.Tasks.Task},System.Func{``0,``1,``2,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``2(CsCheck.Gen{``0},System.Func{``0,``1},System.Func{``0,``1},System.Action{``1,``1},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``3(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,``2},System.Func{``0,``1,``2},System.Action{``2,``2},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,``3},System.Func{``0,``1,``2,``3},System.Action{``3,``3},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,``4},System.Func{``0,``1,``2,``3,``4},System.Action{``4,``4},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,``5},System.Func{``0,``1,``2,``3,``4,``5},System.Action{``5,``5},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,``6},System.Func{``0,``1,``2,``3,``4,``5,``6},System.Action{``6,``6},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.Action{``7,``7},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Faster``9(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Action{``8,``8},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``2(CsCheck.Gen{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Action{``1,``1},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``3(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Threading.Tasks.Task{``2}},System.Func{``0,``1,System.Threading.Tasks.Task{``2}},System.Action{``2,``2},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Threading.Tasks.Task{``3}},System.Func{``0,``1,``2,System.Threading.Tasks.Task{``3}},System.Action{``3,``3},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task{``4}},System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task{``4}},System.Action{``4,``4},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task{``5}},System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task{``5}},System.Action{``5,``5},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task{``6}},System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task{``6}},System.Action{``6,``6},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task{``7}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task{``7}},System.Action{``7,``7},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.FasterAsync``9(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task{``8}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task{``8}},System.Action{``8,``8},System.Double,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>Assert the first function gives the same result and is faster than the second to a given sigma (defaults to 6) across a sample of input data.</summary>
+            <param name="gen">The input data generator.</param>
+            <param name="faster">The presumed faster code to test.</param>
+            <param name="slower">The presumed slower code to test.</param>
+            <param name="assertEqual">An assert test of if the faster and slower code returns an equal value (default Check.Equal).</param>
+            <param name="sigma">The sigma is the number of standard deviations from the null hypothesis (default 6).</param>
+            <param name="threads">The number of threads to run the code on (default number logical CPUs).</param>
+            <param name="repeat">The number of times to call each of the actions in each iteration if they are too quick to accurately measure (default 1).</param>
+            <param name="timeout">The number of seconds to wait before timing out (default 60).</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="raiseexception">If set an exception will be raised with statistics if slower is actually the fastest (default true).</param>
+        </member>
+        <member name="M:CsCheck.Check.Example``1(CsCheck.Gen{``0},System.Func{``0,System.Boolean},System.String)">
+            <summary>Generate an example that satisfies the predicate.</summary>
+            <param name="gen">The data generator.</param>
+            <param name="predicate">The predicate the data has to satisfy.</param>
+            <param name="seed">The initial seed to use to pin the example once found.</param>
+        </member>
+        <member name="M:CsCheck.Check.Equality``1(CsCheck.Gen{``0},System.String,System.Int64,System.Int32,System.Int32,System.Func{System.ValueTuple{``0,``0},System.String})">
+            <summary>Check Equals, <see cref="T:System.IEquatable`1"/> and GetHashCode are consistent.</summary>
+            <param name="gen">The sample input data generator.</param>
+            <param name="seed">The initial seed to use for the first iteration.</param>
+            <param name="iter">The number of iterations to run in the sample (default 100).</param>
+            <param name="time">The number of seconds to run the sample.</param>
+            <param name="threads">The number of threads to run the sample on (default number logical CPUs).</param>
+            <param name="print">A function to convert the input data to a string for error reporting (default Check.Print).</param>
+        </member>
+        <member name="M:CsCheck.Check.Hash(System.Action{CsCheck.Hash},System.Int64,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>Check a hash of a series of values. Cache values on a correct run and fail with stack trace at first difference.</summary>
+            <param name="action">The code called to add values into the hash.</param>
+            <param name="expected">The expected hash value set after an initial run to find it.</param>
+            <param name="decimalPlaces">The number of decimal places to round for double, float and decimal.</param>
+            <param name="significantFigures">The number of significant figures to round for double, float and decimal.</param>
+            <param name="memberName">Automatically set to the method name.</param>
+            <param name="filePath">Automatically set to the file path.</param>
+        </member>
+        <member name="M:CsCheck.Check.Print``1(``0)">
+            <summary>Default print implementation. Handles most collections and tuple like types.</summary>
+        </member>
+        <member name="M:CsCheck.Check.Equal``1(``0,``0)">
+            <summary>Default equal implementation. Handles most collections ordered for IList like or unordered for ICollection based.</summary>
+        </member>
+        <member name="M:CsCheck.Check.ModelEqual``2(``0,``1)">
+            <summary>Default model equal implementation. Handles most collections ordered when actual is IList like or unordered when actual is ICollection based.</summary>
+        </member>
+        <member name="M:CsCheck.Check.AreClose(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Check if two doubles are within the given absolute and relative tolerance.
+            </summary>
+            <param name="atol">The absolute tolerance.</param>
+            <param name="rtol">The relative tolerance.</param>
+            <param name="a">The first double.</param>
+            <param name="b">The second double.</param>
+            <returns>True if the values satisfy |a-b| &#8804; atol + rtol max(|a|,|b|).</returns>
+        </member>
+        <member name="T:CsCheck.Size">
+            <summary>Size representation of Gen generated data.</summary>
+        </member>
+        <member name="T:CsCheck.Gen`1">
+            <summary>Data and Size generator from a PCG random number generator.</summary>
+        </member>
+        <member name="T:CsCheck.Gen">
+            <summary>Provides a set of static methods for composing generators.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Create``1(CsCheck.GenDelegate{``0})">
+            <summary>Create a generator from a function.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Create``1(System.Func{CsCheck.PCG,System.ValueTuple{``0,CsCheck.Size}})">
+            <summary>Create a generator from a function.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Const``1(``0)">
+            <summary>Create a constant generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Const``1(System.Func{``0})">
+            <summary>Create a constant generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``2(CsCheck.Gen{``0},System.Func{``0,``1})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``3(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,``2})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,``3})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,``4})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,``5})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``9(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``3(CsCheck.Gen{``0},CsCheck.Gen{``1},System.Func{``0,``1,``2})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``4(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},System.Func{``0,``1,``2,``3})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``5(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},System.Func{``0,``1,``2,``3,``4})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``6(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},System.Func{``0,``1,``2,``3,``4,``5})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``7(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},System.Func{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``8(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``9(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``10(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``11(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``12(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``13(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},CsCheck.Gen{``11},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``14(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},CsCheck.Gen{``11},CsCheck.Gen{``12},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``15(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},CsCheck.Gen{``11},CsCheck.Gen{``12},CsCheck.Gen{``13},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``16(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},CsCheck.Gen{``11},CsCheck.Gen{``12},CsCheck.Gen{``13},CsCheck.Gen{``14},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``17(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5},CsCheck.Gen{``6},CsCheck.Gen{``7},CsCheck.Gen{``8},CsCheck.Gen{``9},CsCheck.Gen{``10},CsCheck.Gen{``11},CsCheck.Gen{``12},CsCheck.Gen{``13},CsCheck.Gen{``14},CsCheck.Gen{``15},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16})">
+            <summary>Projects each element of a generator into a new form.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``2(CsCheck.Gen{``0},CsCheck.Gen{``1})">
+            <summary>Projects each element of a generator into a tuple.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``3(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2})">
+            <summary>Projects each element of a generator into a tuple.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``4(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3})">
+            <summary>Projects each element of a generator into a tuple.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``5(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4})">
+            <summary>Projects each element of a generator into a tuple.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Select``6(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},CsCheck.Gen{``5})">
+            <summary>Projects each element of a generator into a tuple.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``2(CsCheck.Gen{``0},System.Func{``0,CsCheck.IGen{``1}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``3(CsCheck.Gen{``0},CsCheck.Gen{``1},System.Func{``0,``1,CsCheck.Gen{``2}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``4(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},System.Func{``0,``1,``2,CsCheck.Gen{``3}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``5(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},System.Func{``0,``1,``2,``3,CsCheck.Gen{``4}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``6(CsCheck.Gen{``0},CsCheck.Gen{``1},CsCheck.Gen{``2},CsCheck.Gen{``3},CsCheck.Gen{``4},System.Func{``0,``1,``2,``3,``4,CsCheck.Gen{``5}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``3(CsCheck.Gen{``0},System.Func{``0,CsCheck.Gen{``1}},System.Func{``0,``1,``2})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``3(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,CsCheck.IGen{``2}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,CsCheck.IGen{``3}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,CsCheck.IGen{``4}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.SelectMany``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,CsCheck.IGen{``5}})">
+            <summary>Projects each element of a generator to a new generator and flattens into one generator.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``1(CsCheck.Gen{``0},System.Func{``0,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``2(CsCheck.Gen{System.ValueTuple{``0,``1}},System.Func{``0,``1,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``3(CsCheck.Gen{System.ValueTuple{``0,``1,``2}},System.Func{``0,``1,``2,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``4(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3}},System.Func{``0,``1,``2,``3,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``5(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4}},System.Func{``0,``1,``2,``3,``4,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``6(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5}},System.Func{``0,``1,``2,``3,``4,``5,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``7(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6}},System.Func{``0,``1,``2,``3,``4,``5,``6,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Where``8(CsCheck.Gen{System.ValueTuple{``0,``1,``2,``3,``4,``5,``6,System.ValueTuple{``7}}},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Boolean})">
+            <summary>Filters the elements of a generator based on a predicate.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.OneOfConst``1(``0[])">
+            <summary>Create a generator where the element is one of the constants.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.OneOf``1(CsCheck.IGen{``0}[])">
+            <summary>Create a generator where the element is generated from one of the generators.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Enum``1">
+            <summary>Create a generator for an enum.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.FrequencyConst``1(System.ValueTuple{System.Int32,``0}[])">
+            <summary>Create a generator where the element is one of the constants weighted by the frequency.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Frequency``1(System.ValueTuple{System.Int32,CsCheck.IGen{``0}}[])">
+            <summary>Create a generator where the element is generated by one of the generators weighted by the frequency.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Recursive``1(System.Func{CsCheck.Gen{``0},CsCheck.Gen{``0}})">
+            <summary>
+            Recursively generate a type.
+            </summary>
+            <param name="f">The function to create the generator give an instance of the generator.</param>
+        </member>
+        <member name="M:CsCheck.Gen.Recursive``1(System.Func{System.Int32,CsCheck.Gen{``0},CsCheck.Gen{``0}})">
+            <summary>
+            Recursively generate a type with the depth of generation.
+            </summary>
+            <param name="f">The function to create the generator give the depth and an instance of the generator.</param>
+        </member>
+        <member name="M:CsCheck.Gen.Recursive``1(System.Func{CsCheck.Gen{``0},CsCheck.Gen{``0}},CsCheck.GenMap{``0})">
+            <summary>
+            Recursively generate a type with a map of type and size.
+            </summary>
+            <param name="f">The function to create the generator give an instance of the generator.</param>
+            <param name="map">The type and size map function.</param>
+        </member>
+        <member name="M:CsCheck.Gen.Recursive``1(System.Func{System.Int32,CsCheck.Gen{``0},CsCheck.Gen{``0}},CsCheck.GenMap{``0})">
+            <summary>
+            Recursively generate a type with the depth of generation and a map of type and size.
+            </summary>
+            <param name="f">The function to create the generator give the depth and an instance of the generator.</param>
+            <param name="map">The type and size map function.</param>
+        </member>
+        <member name="M:CsCheck.Gen.Clone``1(CsCheck.Gen{``0})">
+            <summary>Create a second exact clone by running the generator again with the same seed.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(``0[])">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{``0[]})">
+            <summary>Shuffle the generated elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(``0[],System.Int32)">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(``0[],System.Int32,System.Int32)">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{``0[]},System.Int32)">
+            <summary>Shuffle the generated elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{``0[]},System.Int32,System.Int32)">
+            <summary>Shuffle the generated elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(System.Collections.Generic.List{``0})">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{System.Collections.Generic.List{``0}})">
+            <summary>Create a generator by shuffling the generated elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(System.Collections.Generic.List{``0},System.Int32,System.Int32)">
+            <summary>Create a generator by shuffling the elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{System.Collections.Generic.List{``0}},System.Int32)">
+            <summary>Create a generator by shuffling the generated elements.</summary>
+        </member>
+        <member name="M:CsCheck.Gen.Shuffle``1(CsCheck.Gen{System.Collections.Generic.List{``0}},System.Int32,System.Int32)">
+            <summary>Create a generator by shuffling the generated elements.</summary>
+        </member>
+        <member name="P:CsCheck.GenInt.Skew">
+            <summary>Skew the distribution towards either end.
+            For a&gt;0 (positive skewness) the median decreases to 0.5*Math.Pow(0.5,a), and the mean decreases to 1.0/(1.0+a) of the range.
+            For a&lt;0 (negative skewness) the median increases to 1.0-0.5*Math.Pow(0.5,-a), and the mean increases 1.0-1.0/(1.0-a) of the range.</summary>
+        </member>
+        <member name="P:CsCheck.GenUInt.Skew">
+            <summary>Skew the distribution towards either end.
+            For a&gt;0 (positive skewness) the median decreases to 0.5*Math.Pow(0.5,a), and the mean decreases to 1.0/(1.0+a) of the range.
+            For a&lt;0 (negative skewness) the median increases to 1.0-0.5*Math.Pow(0.5,-a), and the mean increases 1.0-1.0/(1.0-a) of the range.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.NonNegative">
+            <summary>In the range 0.0 &lt;= x &lt;= max including special values.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.Unit">
+            <summary>In the range 0.0f &lt;= x &lt; 1.0f.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.OneTwo">
+            <summary>In the range 1.0f &lt;= x &lt; 2.0f.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.Positive">
+            <summary>In the range 0.0 &lt; x &lt;= inf without nan.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.Negative">
+            <summary>In the range -inf &lt;= x &lt; 0.0 without nan.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.Normal">
+            <summary>Without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.NormalPositive">
+            <summary>In the range 0.0 &lt; x &lt;= max without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.NormalNegative">
+            <summary>In the range min &lt;= x &lt; 0.0 without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.NormalNonNegative">
+            <summary>In the range 0.0 &lt;= x &lt;= max without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.NormalNonPositive">
+            <summary>In the range min &lt;= x &lt;= 0.0 without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenFloat.Special">
+            <summary>With more special values like nan, inf, max, epsilon, -2, -1, 0, 1, 2.</summary>
+        </member>
+        <member name="P:CsCheck.GenFloat.Item(System.Int32,System.Int32,System.Int32)">
+            <summary>A rational float num/den between start and finish where den is between 1 and denominator.</summary>
+            <param name="start">The lowest value.</param>
+            <param name="finish">The highest value.</param>
+            <param name="denominator">The maximum values of the fraction denominator.</param>
+        </member>
+        <member name="P:CsCheck.GenFloat.WithInt">
+            <summary>Gen with 50% int values.</summary>
+        </member>
+        <member name="P:CsCheck.GenFloat.WithRational">
+            <summary>Gen with 50% rational values.</summary>
+        </member>
+        <member name="P:CsCheck.GenDouble.Item(System.Int32,System.Int32,System.Int32)">
+            <summary>A rational double num/den between start and finish where den is between 1 and denominator.</summary>
+            <param name="start">The lowest value.</param>
+            <param name="finish">The highest value.</param>
+            <param name="denominator">The maximum values of the fraction denominator.</param>
+        </member>
+        <member name="F:CsCheck.GenDouble.NonNegative">
+            <summary>In the range 0.0 &lt;= x &lt;= inf, can be nan.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.Unit">
+            <summary>In the range 0.0 &lt;= x &lt; 1.0.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.OneTwo">
+            <summary>In the range 1.0 &lt;= x &lt; 2.0.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.Positive">
+            <summary>In the range 0.0 &lt; x &lt;= inf without nan.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.Negative">
+            <summary>In the range -inf &lt;= x &lt; 0.0 without nan.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.Normal">
+            <summary>Without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.NormalPositive">
+            <summary>In the range 0.0 &lt; x &lt;= max without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.NormalNegative">
+            <summary>In the range min &lt;= x &lt; 0.0 without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.NormalNonNegative">
+            <summary>In the range 0.0 &lt;= x &lt;= max without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.NormalNonPositive">
+            <summary>In the range min &lt;= x &lt;= 0.0 without special values nan and inf.</summary>
+        </member>
+        <member name="F:CsCheck.GenDouble.Special">
+            <summary>With more special values like nan, inf, max, epsilon, -2, -1, 0, 1, 2.</summary>
+        </member>
+        <member name="P:CsCheck.GenDouble.Skew">
+            <summary>Skew the distribution towards either end.
+            For a&gt;0 (positive skewness) the median decreases to 0.5*Math.Pow(0.5,a), and the mean decreases to 1.0/(1.0+a) of the range.
+            For a&lt;0 (negative skewness) the median increases to 1.0-0.5*Math.Pow(0.5,-a), and the mean increases 1.0-1.0/(1.0-a) of the range.</summary>
+        </member>
+        <member name="P:CsCheck.GenDouble.WithInt">
+            <summary>Gen with 50% int values.</summary>
+        </member>
+        <member name="P:CsCheck.GenDouble.WithRational">
+            <summary>Gen with 50% rational values.</summary>
+        </member>
+        <member name="T:CsCheck.Hash">
+            <summary>Functionality for hash testing data with detailed information of any changes.</summary>
+        </member>
+        <member name="T:CsCheck.HashStream">
+            <summary>A stream for hash testing.</summary>
+        </member>
+        <member name="T:CsCheck.PCG">
+            <summary><see href="https://www.pcg-random.org/">PCG</see> is a family of simple fast space-efficient statistically good algorithms for random number generation.</summary>
+        </member>
+        <member name="T:CsCheck.MedianEstimator">
+            <summary>A median and quartile estimator.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.N">
+            <summary>The number of sample observations.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.N0">
+            <summary>The number of observations less than or equal to the quantile.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.N1">
+            <summary>The number of observations less than or equal to the quantile.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.N2">
+            <summary>The number of observations less than or equal to the quantile.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.N3">
+            <summary>The number of observations less than or equal to the quantile.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.Q0">
+            <summary>The minimum or 0th percentile value.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.Q1">
+            <summary>The first, lower quartile, or 25th percentile value.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.Q2">
+            <summary>The second quartile, median, or 50th percentile value.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.Q3">
+            <summary>The third, upper quartile, or 75th percentile value.</summary>
+        </member>
+        <member name="F:CsCheck.MedianEstimator.Q4">
+            <summary>The maximum or 100th percentile value.</summary>
+        </member>
+        <member name="P:CsCheck.MedianEstimator.Minimum">
+            <summary>The minimum or 0th percentile value.</summary>
+        </member>
+        <member name="P:CsCheck.MedianEstimator.LowerQuartile">
+            <summary>The first, lower quartile, or 25th percentile value.</summary>
+        </member>
+        <member name="P:CsCheck.MedianEstimator.Median">
+            <summary>The second quartile, median, or 50th percentile value.</summary>
+        </member>
+        <member name="P:CsCheck.MedianEstimator.UpperQuartile">
+            <summary>The third, upper quartile, or 75th percentile value.</summary>
+        </member>
+        <member name="P:CsCheck.MedianEstimator.Maximum">
+            <summary>The maximum or 100th percentile value.</summary>
+        </member>
+        <member name="M:CsCheck.MedianEstimator.Add(System.Double)">
+            <summary>Add a sample observation.</summary>
+            <param name="s">Sample observation value.</param>
+        </member>
+        <member name="T:CsCheck.MedianEstimate">
+            <summary>Median estimate with error. Supports mathematical operators.</summary>
+        </member>
+        <member name="M:CsCheck.MedianEstimate.#ctor(CsCheck.MedianEstimator)">
+            <summary>Median estimate with error. Supports mathematical operators.</summary>
+        </member>
+        <member name="T:Dbg">
+            <summary>Debug utility functions to collect, count and output debug info, time, classify generators, define and remotely call functions, and perform in code regression testing.
+            CsCheck can temporarily be added as a reference to run in non test code.
+            Note this module is only for temporary debug use and the API may change between minor versions.</summary>
+        </member>
+        <member name="M:Dbg.Break">
+            <summary>Debugger break.</summary>
+        </member>
+        <member name="M:Dbg.Output">
+            <summary>Output held debug info.</summary>
+        </member>
+        <member name="M:Dbg.Output(System.Action{System.String})">
+            <summary>Output held debug info.</summary>
+        </member>
+        <member name="M:Dbg.Clear">
+            <summary>Clear debug info.</summary>
+        </member>
+        <member name="M:Dbg.Set(System.String,System.Object)">
+            <summary>Save object by name.</summary>
+        </member>
+        <member name="M:Dbg.DbgSet``1(``0,System.String)">
+            <summary>Save object by name.</summary>
+        </member>
+        <member name="M:Dbg.Get(System.String)">
+            <summary>Get object by name.</summary>
+        </member>
+        <member name="M:Dbg.Count``1(``0)">
+            <summary>Increment debug info counter. Function name when parameter not set.</summary>
+        </member>
+        <member name="M:Dbg.Count(System.String,System.Int32)">
+            <summary>Increment debug info counter. Function name when parameter not set.</summary>
+        </member>
+        <member name="M:Dbg.TimeRegion.End">
+            <summary>End the time measurement.</summary>
+        </member>
+        <member name="M:Dbg.TimeRegion.Line(System.Int32)">
+            <summary>Record time to this line.</summary>
+        </member>
+        <member name="M:Dbg.TimeRegion.EndStart``1(``0)">
+            <summary>End the time measurement and start a new one.</summary>
+        </member>
+        <member name="M:Dbg.Time``1(``0)">
+            <summary>Start a time measurement.</summary>
+        </member>
+        <member name="M:Dbg.Time(System.String)">
+            <summary>Start a time measurement. Function name when parameter not set.</summary>
+        </member>
+        <member name="M:Dbg.DbgClassify``1(CsCheck.Gen{``0},System.Func{``0,System.String})">
+            <summary>Classify and count generated types debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``1(``0,System.String,System.Int32)">
+            <summary>Add debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``1(System.Action{``0},``0,System.String,System.Int32)">
+            <summary>Method debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``2(System.Action{``0,``1},``0,``1,System.String,System.Int32)">
+            <summary>Method debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``3(System.Action{``0,``1,``2},``0,``1,``2,System.String,System.Int32)">
+            <summary>Method debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``1(System.Func{``0},System.String,System.Int32)">
+            <summary>Function debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``2(System.Func{``0,``1},``0,System.String,System.Int32)">
+            <summary>Function debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``3(System.Func{``0,``1,``2},``0,``1,System.String,System.Int32)">
+            <summary>Function debug info.</summary>
+        </member>
+        <member name="M:Dbg.Info``4(System.Func{``0,``1,``2,``3},``0,``1,``2,System.String,System.Int32)">
+            <summary>Function debug info.</summary>
+        </member>
+        <member name="M:Dbg.CallAdd(System.String,System.Action)">
+            <summary>Define and store debug call by name.</summary>
+        </member>
+        <member name="M:Dbg.Call(System.String)">
+            <summary>Call a stored debug call.</summary>
+        </member>
+        <member name="M:Dbg.DbgTee``1(``0,System.Action{``0})">
+            <summary>Perform an action inline and return the input.</summary>
+        </member>
+        <member name="M:Dbg.DbgTee``2(``1,System.Action{``0,``1},``0)">
+            <summary>Perform an action inline and return the input.</summary>
+        </member>
+        <member name="M:Dbg.DbgTee``3(``2,System.Action{``0,``1,``2},``0,``1)">
+            <summary>Perform an action inline and return the input.</summary>
+        </member>
+        <member name="P:Dbg.Regression">
+            <summary>Saves a sequence of values on the first run and compares them on subsequent runs.</summary>
+        </member>
+    </members>
+</doc>

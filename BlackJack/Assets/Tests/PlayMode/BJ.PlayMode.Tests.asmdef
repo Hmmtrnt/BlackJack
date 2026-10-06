@@ -1,0 +1,25 @@
+{
+    "name": "BJ.PlayMode.Tests",
+    "rootNamespace": "BJ.PlayMode.Tests",
+    "references": [
+        "GUID:2acbd4da9572415ea59245b781607385",
+        "GUID:1872e89c3b5e48aba59cb55c905768bb",
+        "GUID:b49baaa05add45d192ec2223e1c73ffa",
+        "GUID:c3a9b5919c7242f4bb2dd9eab3245189",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

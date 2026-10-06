@@ -1,0 +1,25 @@
+{
+    "name": "BJ.Domain.Tests",
+    "rootNamespace": "BJ.Domain.Tests",
+    "references": [
+        "GUID:b49baaa05add45d192ec2223e1c73ffa",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "CsCheck.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

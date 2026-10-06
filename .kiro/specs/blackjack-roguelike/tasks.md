@@ -16,7 +16,7 @@
 
 ## Tasks
 
-- [ ] 1. アセンブリ定義とプロジェクト基盤を整備する
+- [x] 1. アセンブリ定義とプロジェクト基盤を整備する
   - `Assets/Scripts/Domain/` に `UnityEngine` 非依存のアセンブリ定義（`BJ.Domain.asmdef`）を作成する
   - `Assets/Scripts/Presentation/`、`Assets/Scripts/Coordination/`、`Assets/Scripts/Data/` の各 asmdef を作成し、依存方向を Presentation → Coordination → Domain → Data の一方向のみに制限する
   - EditMode テスト用 asmdef（`BJ.Domain.Tests.asmdef`、Domain と PBT ライブラリを参照）と PlayMode テスト用 asmdef を作成する

@@ -1,0 +1,16 @@
+{
+    "name": "BJ.Data",
+    "rootNamespace": "BJ.Data",
+    "references": [
+        "GUID:b49baaa05add45d192ec2223e1c73ffa"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
