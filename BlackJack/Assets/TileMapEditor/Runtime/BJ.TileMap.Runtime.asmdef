@@ -1,0 +1,14 @@
+{
+    "name": "BJ.TileMap.Runtime",
+    "rootNamespace": "BJ.TileMap",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
